@@ -1,0 +1,24 @@
+{
+  "name": "teste-ebac-ui",
+  "version": "1.0.0",
+  "description": "Módulo 11 - Aula 01",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adsguilherme/teste-ebac-ui.git"
+  },
+  "keywords": [],
+  "author": "Guilherme de Sousa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adsguilherme/teste-ebac-ui/issues"
+  },
+  "homepage": "https://github.com/adsguilherme/teste-ebac-ui#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^6.3.1",
+    "cypress": "^9.6.0"
+  }
+}
