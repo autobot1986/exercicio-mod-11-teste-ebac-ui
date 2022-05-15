@@ -2,13 +2,17 @@
 
 /// <reference types="cypress" />
 
+const perfil = require('../fixtures/perfil.json') 
+// Para importar dados externos usamos esse código.
+// Agora no arquivo 'login.spec.js' importar esse arquivo 'perfil.json' para poder funcionar os dados por meio do arquivo com a massa. 
+
 context('Funcionalidade login', () => {
 
 // context é um bloco de função.
 // it são os cenários de testes, e ficam agrupados na funcionalidade login.
 
   beforeEach(() => { // beforeEach: significa 'antes de cada' teste
-    cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/') // Com o uso do beforeEach, não precisa passar dentro de cada it o cy.visit. Dessa forma escrevemos menos código.
+    cy.visit('minha-conta') // Com o uso do beforeEach, não precisa passar dentro de cada it o cy.visit. Dessa forma escrevemos menos código.
   })
 
   afterEach(() => {
@@ -27,6 +31,26 @@ context('Funcionalidade login', () => {
 
     cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, aluno_ebac (não é aluno_ebac? Sair)')
 
+  })
+
+  it.only('Deve fazer login com sucesso - Usando arquivo de dados', () => {
+    cy.get('#username').type(perfil.usuario)
+    cy.get('#password').type(perfil.senha)
+    cy.get('.woocommerce-form > .button').click() 
+    
+    cy.get('.page-title').should('contain', 'Minha conta')
+    
+  })
+
+  it('Deve fazer login com sucesso - Usando fixture', () => {
+    cy.fixture('perfil.json').then(dados => {
+      cy.get('#username').type(dados.usuario)
+      cy.get('#password').type(dados.senha) // {log: false} Garante que não seja apresentado dados sensíveis (senha) na execução do teste. 
+      cy.get('.woocommerce-form > .button').click() 
+      
+      cy.get('.page-title').should('contain', 'Minha conta')
+
+    })
   })
 
   it('Deve exibir uma mensagem de erro ao inserir usuário inválido', () => {

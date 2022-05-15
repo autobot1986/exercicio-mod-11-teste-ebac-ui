@@ -2,7 +2,7 @@
 
 describe("Funcionalidade Página de Produtos", () => {
   beforeEach(() => {
-    cy.visit('http://lojaebac.ebaconline.art.br/produtos/')
+    cy.visit('produtos')
   })
 
   it('Deve selecionar um produto da lista', () => {
@@ -21,7 +21,7 @@ describe("Funcionalidade Página de Produtos", () => {
 
   it('Deve adicionar um produto ao carrinho', () => {
 
-    let quantidade = 3
+    let quantidade = 2
 
     cy.get('[class="product-block grid"]')
       .contains('Ariel Roll Sleeve Sweatshirt')
